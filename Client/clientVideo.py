@@ -1,10 +1,12 @@
-import socket
+import socket,os
+os.add_dll_directory(r'C:\gstreamer\1.0\msvc_x86_64\bin')
+
 import cv2
 import pickle
 import struct
 
-HOST = '162.152.1.122'  # Replace with your server's IP
-PORT = 50000  # Must match the server port
+HOST = '127.0.0.1' # Replace with your server's IP
+PORT = 5000 #Must match the server port
 
 # Create a socket to receive video
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
