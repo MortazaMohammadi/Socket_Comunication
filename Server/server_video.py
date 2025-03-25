@@ -5,10 +5,10 @@ import struct
 
 # Add DLL directories (for Windows)
 # os.add_dll_directory(r'C:\opencv\gbuild\install\x64\vc16\bin')
-os.add_dll_directory(r'C:\gstreamer\1.0\msvc_x86_64\bin')
+# os.add_dll_directory(r'C:\gstreamer\1.0\msvc_x86_64\bin')
 import cv2
 
-HOST = '162.152.1.122'  # Server's IP
+HOST = '162.152.1.177'  # Server's IP
 PORT = 50000  # Must match the client port
 
 # Create TCP socket

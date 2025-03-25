@@ -1,13 +1,13 @@
+import os 
+os.add_dll_directory(r'C:\opencv\gbuild\install\x64\vc16\bin')
+os.add_dll_directory(r'C:\gstreamer\1.0\msvc_x86_64\bin')
 import cv2
 
-# RTSP Camera URL (No re-encoding)
-camera_rtsp_url = "rtsp://192.168.2.119:554"
+# Device camera index
+camera_index = 0
 
-# GStreamer pipeline (Direct RTSP forwarding)
-gst_pipeline = f"rtspsrc location={camera_rtsp_url} latency=0 ! decodebin ! videoconvert ! appsink"
-
-# Open camera stream
-cap = cv2.VideoCapture(gst_pipeline, cv2.CAP_GSTREAMER)
+# Open device camera
+cap = cv2.VideoCapture(camera_index)
 
 # Forward video without re-encoding
 forward_pipeline = (
@@ -17,7 +17,7 @@ forward_pipeline = (
 )
 
 # Open UDP stream
-out = cv2.VideoWriter(forward_pipeline, cv2.CAP_GSTREAMER, 0, 30.0, (1280, 720))
+out = cv2.VideoWriter(forward_pipeline, cv2.CAP_GSTREAMER, 0, 30.0, (640, 480))
 
 if not cap.isOpened() or not out.isOpened():
     print("Failed to open camera stream or output stream")
