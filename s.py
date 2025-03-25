@@ -1,4 +1,4 @@
-import os 
+import os
 os.add_dll_directory(r'C:\opencv\gbuild\install\x64\vc16\bin')
 os.add_dll_directory(r'C:\gstreamer\1.0\msvc_x86_64\bin')
 import cv2
@@ -12,9 +12,10 @@ cap = cv2.VideoCapture(camera_index)
 # Forward video without re-encoding
 forward_pipeline = (
     "appsrc ! videoconvert ! queue ! "
-    "x264enc speed-preset=ultrafast tune=zerolatency ! "
-    "rtph264pay ! udpsink host=127.0.0.1 port=5000"
+    "x264enc speed-preset=superfast tune=zerolatency bitrate=2000 key-int-max=10 ! "
+    "rtph264pay ! queue ! udpsink host=162.152.0.60 port=5000 sync=false"
 )
+
 
 # Open UDP stream
 out = cv2.VideoWriter(forward_pipeline, cv2.CAP_GSTREAMER, 0, 30.0, (640, 480))
